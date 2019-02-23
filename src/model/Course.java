@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Course {
     private String name_course;
@@ -10,11 +12,22 @@ public class Course {
     private LocalDate term;
     private String trainer;
 
+    private List<Participant> participants= new ArrayList<>();
+
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<Participant> participants) {
+        this.participants = participants;
+    }
+
     public void getParticipiant(){
 //        listOfParticipiant.getName();
 //        listOfParticipiant.getLastname();
         listOfParticipiant.toString();
     }
+
 
     public Course(String name_course, String category, Participant listOfParticipiant, LocalDate term) {
         this.name_course = name_course;
