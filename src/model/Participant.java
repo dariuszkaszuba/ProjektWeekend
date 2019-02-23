@@ -11,10 +11,7 @@ public class Participant {
 
     @Override
     public String toString() {
-        return "Participant{" +
-                "name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
-                '}';
+        return name+" "+lastname;
     }
 
     public String getName() {
