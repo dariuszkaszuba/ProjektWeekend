@@ -23,11 +23,8 @@ public class CourseController {
     public void addUser(String name_course, String name, String lastname) {
         for (int i = 0; i < cours.size(); i++) {
             if (name_course.equals(cours.get(i).getName_course())) {
-                String category=cours.get(i).getCategory();
-                LocalDate term=cours.get(i).getTerm();
                 Participant p = new Participant(name,lastname);
-                Course c = new Course(name_course,category, p,term);
-                cours.add(c);
+                cours.get(i).setListOfParticipiant(p);
                 System.out.println("Dodano uzytkownika: "+name+" "+lastname);
                 break;
             }
