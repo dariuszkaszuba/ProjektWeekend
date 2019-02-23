@@ -8,28 +8,28 @@ public class Course {
     private String name_course;
     private String category;
     private int countOfParticipiant;
-    private Participant listOfParticipiant;
     private LocalDate term;
     private String trainer;
 
-    private List<Participant> participants= new ArrayList<>();
+    private List<Participant> listOfParticipiant= new ArrayList<>();
 
-    public List<Participant> getParticipants() {
-        return participants;
+
+    public List<Participant> getListOfParticipiant() {
+        return listOfParticipiant;
     }
 
-    public void setParticipants(List<Participant> participants) {
-        this.participants = participants;
+    public void setListOfParticipiant(String name, String lastname) {
+        this.listOfParticipiant = listOfParticipiant;
     }
 
-    public void getParticipiant(){
-//        listOfParticipiant.getName();
-//        listOfParticipiant.getLastname();
-        listOfParticipiant.toString();
-    }
+//    public void getParticipiant(){
+////        listOfParticipiant.getName();
+////        listOfParticipiant.getLastname();
+//        listOfParticipiant.toString();
+//    }
 
 
-    public Course(String name_course, String category, Participant listOfParticipiant, LocalDate term) {
+    public Course(String name_course, String category, List listOfParticipiant, LocalDate term) {
         this.name_course = name_course;
         this.category = category;
         this.listOfParticipiant = listOfParticipiant;
@@ -66,13 +66,7 @@ public class Course {
         this.countOfParticipiant = countOfParticipiant;
     }
 
-    public Participant getListOfParticipiant() {
-        return listOfParticipiant;
-    }
 
-    public void setListOfParticipiant(Participant listOfParticipiant) {
-        this.listOfParticipiant = listOfParticipiant;
-    }
 
     public LocalDate getTerm() {
         return term;
@@ -99,7 +93,7 @@ public class Course {
         this.term = term;
     }
 
-    public Course(String name_course, String category, int countOfParticipiant, Participant listOfParticipiant, LocalDate term, String trainer) {
+    public Course(String name_course, String category, int countOfParticipiant, List listOfParticipiant, LocalDate term, String trainer) {
         this.name_course = name_course;
         this.category = category;
         this.countOfParticipiant = countOfParticipiant;

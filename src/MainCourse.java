@@ -10,7 +10,7 @@ public class MainCourse {
         Scanner sc = new Scanner(System.in);
         int decision = -1;
         while (decision != 0) {
-            System.out.println("1. Dodaj kurs \n2. Pokaż dostępne szkolenia \n3. Dodaj użytkownika \n4. Usuń użytkownika \n5. Wyjscie");
+            System.out.println("1. Dodaj kurs \n2. Pokaż dostępne szkolenia \n3. Dodaj użytkownika \n4. Usuń użytkownika \n0. Wyjscie");
             decision = sc.nextInt();
             sc.nextLine();
             switch (decision) {
@@ -19,9 +19,9 @@ public class MainCourse {
                     String name_course = sc.nextLine();
                     System.out.println("Podaj kategorie kursu");
                     String category = sc.nextLine();
-                    System.out.println("Podaj date kursu (YYYY-MM-DD");
+                    System.out.println("Podaj date kursu (YYYY-MM-DD)");
                     String date = sc.nextLine();
-                    ;
+
                     LocalDate ld = LocalDate.parse(date);
                     cc.addCourse(name_course, category, ld);
                     break;
@@ -35,7 +35,7 @@ public class MainCourse {
                     String name = sc.nextLine();
                     System.out.println("Podaj nazwisko");
                     String lastname = sc.nextLine();
-                    System.out.println("Podaj date kursu (YYYY-MM-DD");
+                    System.out.println("Podaj date kursu (YYYY-MM-DD)");
                     String date2 = sc.nextLine();
                     cc.addUser(name_course2, name, lastname, date2);
                     break;
@@ -47,6 +47,7 @@ public class MainCourse {
                     System.out.println("Podaj nazwisko");
                     String lastname2 = sc.nextLine();
                     cc.deleteUser(name_course3, name2, lastname2);
+                    break;
                 case 0:
                     break;
                 default:

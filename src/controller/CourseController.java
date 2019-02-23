@@ -12,7 +12,7 @@ public class CourseController {
     List<Course> cours = new ArrayList<>();
 
     public void addCourse(String name_course, String category, LocalDate term) {
-        String nc=name_course.toUpperCase();
+        String nc = name_course.toUpperCase();
         Course c = new Course(nc, category, term);
         cours.add(c);
         System.out.println("Dodano kurs: " + c);
@@ -34,12 +34,13 @@ public class CourseController {
 
     public void chooseDate(String name_course, LocalDate term) {
         for (int i = 0; i < cours.size(); i++) {
-            if ((name_course.equals(cours.get(i).getName_course()))&&term.equals(cours.get(i).getTerm())) {
-                    cours.get(i).setName_course(name_course);
-                    cours.get(i).setTerm(term);
+            if ((name_course.equals(cours.get(i).getName_course())) && term.equals(cours.get(i).getTerm())) {
+                cours.get(i).setName_course(name_course);
+                cours.get(i).setTerm(term);
             }
         }
     }
+
     public void chooseDate(String name_course) {
         boolean[] list = new boolean[cours.size()];
         for (int i = 0; i < cours.size(); i++) {
@@ -76,10 +77,10 @@ public class CourseController {
     }
 
     public boolean addUser(String name_course, String name, String lastname, String term) {
-        String name_courseToUpper=name_course.toUpperCase();
-        LocalDate ld= LocalDate.parse(term);
+        String name_courseToUpper = name_course.toUpperCase();
+        LocalDate ld = LocalDate.parse(term);
         for (int i = 0; i < cours.size(); i++) {
-            if ((name_courseToUpper.equals(cours.get(i).getName_course()))&&ld.equals(cours.get(i).getTerm())) {
+            if ((name_courseToUpper.equals(cours.get(i).getName_course())) && ld.equals(cours.get(i).getTerm())) {
 //                if ( cours.) {
 //                    Participant p = new Participant(name, lastname);
 //                    cours.get(i).setListOfParticipiant(p);
@@ -87,30 +88,32 @@ public class CourseController {
                 cours.get(i).setName_course(name_courseToUpper);
                 cours.get(i).setTerm(ld);
                 Participant p = new Participant(name, lastname);
-                cours.get(i).setListOfParticipiant(p);
+                cours.get(i).getListOfParticipiant().add(p);
                 System.out.println("Dodano uzytkownika: " + name + " " + lastname);
                 return true;
             }
         }
-        System.out.println("Nie ma kursu: " + name_courseToUpper +" w podanym teriminie " +". Nie dodano uzytkownika: " + name + " " + lastname);
+        System.out.println("Nie ma kursu: " + name_courseToUpper + " w podanym teriminie " + ". Nie dodano uzytkownika: " + name + " " + lastname);
         return false;
     }
-    public boolean deleteUser(String name_course, String name, String lastname){
-        String name_courseToUppercase=name_course.toUpperCase();
+
+    public boolean deleteUser(String name_course, String name, String lastname) {
+        String name_courseToUppercase = name_course.toUpperCase();
         Participant p = new Participant(name, lastname);
 
-        for (int i = 0; i <cours.size() ; i++) {
-            if(name_courseToUppercase.equals(cours.get(i).getName_course())&&name.equals(cours.get(i).getListOfParticipiant().getName())&&
-                    lastname.equals(cours.get(i).getListOfParticipiant().getLastname())){
+        for (int i = 0; i < cours.size(); i++) {
+            if (name_courseToUppercase.equals(cours.get(i).getName_course())&&
+//                    cours.get(i).getListOfParticipiant().contains(name) && cours.get(i).getListOfParticipiant().contains(lastname)) {
+                name.equals((cours.get(i).getListOfParticipiant().get(0)))&& lastname.equals((cours.get(i).getListOfParticipiant().get(0))) ){
+//                if(name_courseToUppercase.equals(cours.get(i).getName_course())&&name.equals(cours.get(i).getListOfParticipiant().getName())&&
+//                        lastname.equals(cours.get(i).getListOfParticipiant().getLastname())){
 //            if(name_course.equals(cours.get(i).getName_course())&&p.equals(cours.get(i).getListOfParticipiant())){
-                System.out.println(name+" "+lastname+" zostal usuniety z kursu "+ cours.get(i).getName_course());
-                cours.remove(i);
+                System.out.println(name + " " + lastname + " zostal usuniety z kursu " + cours.get(i).getName_course());
+                cours.get(i).getListOfParticipiant().remove(i);
                 return true;
             }
-
-//            return  false;
         }
-        System.out.println(name+" "+lastname+" NIE zostal usuniety z kursu ");
-        return  false;
+        System.out.println(name + " " + lastname + " NIE zostal usuniety z kursu ");
+        return false;
     }
 }
