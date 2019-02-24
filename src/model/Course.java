@@ -38,7 +38,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return String.format("%10s | %10s | %10d | %20s | %10s | %10s", name_course, category, countOfParticipiant, listOfParticipiant,
+        return String.format("%15s | %15s | %15d | %20s | %10s | %10s", name_course, category, countOfParticipiant, listOfParticipiant,
         term,trainer);
     }
 

@@ -1,6 +1,7 @@
 import controller.CourseController;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class MainCourse {
@@ -15,15 +16,19 @@ public class MainCourse {
             sc.nextLine();
             switch (decision) {
                 case 1:
-                    System.out.println("Podaj nazwe kursu");
-                    String name_course = sc.nextLine();
-                    System.out.println("Podaj kategorie kursu");
-                    String category = sc.nextLine();
-                    System.out.println("Podaj date kursu (YYYY-MM-DD)");
-                    String date = sc.nextLine();
 
-                    LocalDate ld = LocalDate.parse(date);
-                    cc.addCourse(name_course, category, ld);
+                        System.out.println("Podaj nazwe kursu");
+                        String name_course = sc.nextLine();
+                        System.out.println("Podaj kategorie kursu");
+                        String category = sc.nextLine();
+                    try {
+                        System.out.println("Podaj date kursu (YYYY-MM-DD)");
+                        String date = sc.nextLine();
+                        LocalDate ld = LocalDate.parse(date);
+                        cc.addCourse(name_course, category, ld);
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Nieprawidłowy format");
+                    }
                     break;
                 case 2:
                     cc.showCourse();
@@ -45,8 +50,8 @@ public class MainCourse {
                     System.out.println("Podaj imię");
                     String name2 = sc.nextLine();
                     System.out.println("Podaj nazwisko");
-                    String lastname2 = sc.nextLine();
-                    cc.deleteUser(name_course3, name2, lastname2);
+                    String lastname3 = sc.nextLine();
+                    cc.deleteUser(name_course3, name2, lastname3);
                     break;
                 case 0:
                     break;

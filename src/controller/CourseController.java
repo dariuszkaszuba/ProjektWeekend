@@ -76,20 +76,20 @@ public class CourseController {
 //        }
     }
 
+
+
     public boolean addUser(String name_course, String name, String lastname, String term) {
         String name_courseToUpper = name_course.toUpperCase();
         LocalDate ld = LocalDate.parse(term);
         for (int i = 0; i < cours.size(); i++) {
             if ((name_courseToUpper.equals(cours.get(i).getName_course())) && ld.equals(cours.get(i).getTerm())) {
-//                if ( cours.) {
-//                    Participant p = new Participant(name, lastname);
-//                    cours.get(i).setListOfParticipiant(p);
-//                }
                 cours.get(i).setName_course(name_courseToUpper);
                 cours.get(i).setTerm(ld);
                 Participant p = new Participant(name, lastname);
                 cours.get(i).getListOfParticipiant().add(p);
+                cours.get(i).setCountOfParticipiant(++i);
                 System.out.println("Dodano uzytkownika: " + name + " " + lastname);
+
                 return true;
             }
         }
@@ -99,21 +99,22 @@ public class CourseController {
 
     public boolean deleteUser(String name_course, String name, String lastname) {
         String name_courseToUppercase = name_course.toUpperCase();
-        Participant p = new Participant(name, lastname);
 
         for (int i = 0; i < cours.size(); i++) {
-            if (name_courseToUppercase.equals(cours.get(i).getName_course())&&
-//                    cours.get(i).getListOfParticipiant().contains(name) && cours.get(i).getListOfParticipiant().contains(lastname)) {
-                name.equals((cours.get(i).getListOfParticipiant().get(0)))&& lastname.equals((cours.get(i).getListOfParticipiant().get(0))) ){
-//                if(name_courseToUppercase.equals(cours.get(i).getName_course())&&name.equals(cours.get(i).getListOfParticipiant().getName())&&
-//                        lastname.equals(cours.get(i).getListOfParticipiant().getLastname())){
-//            if(name_course.equals(cours.get(i).getName_course())&&p.equals(cours.get(i).getListOfParticipiant())){
-                System.out.println(name + " " + lastname + " zostal usuniety z kursu " + cours.get(i).getName_course());
-                cours.get(i).getListOfParticipiant().remove(i);
-                return true;
+            System.out.println("size" + cours.get(i).getListOfParticipiant().size());
+            if (name_courseToUppercase.equals(cours.get(i).getName_course())) {
+                for (int j = 0; j < cours.get(i).getListOfParticipiant().size(); j++) {
+                    System.out.println("w petli");
+                    if (name.equals(cours.get(i).getListOfParticipiant().get(j).getName())&&lastname.equals(cours.get(i).getListOfParticipiant().get(j).getLastname())) {
+                        System.out.println(name+" "+lastname+ " zostal usuniety z kursu " + cours.get(i).getName_course());
+                        cours.get(i).getListOfParticipiant().remove(i);
+                        cours.get(i).setCountOfParticipiant(--i);
+                        return true;
+                    }
+                }
             }
         }
-        System.out.println(name + " " + lastname + " NIE zostal usuniety z kursu ");
+        System.out.println(name+" "+lastname + " NIE zostal usuniety z kursu ");
         return false;
     }
 }
